@@ -29,16 +29,27 @@ const snack = [
   },
 ];
 
-const App = () => {
+const Item = ({name}) => {
   return (
-    <View style={styles.container}>
-      <View style={styles.topbox}>
-        <Text>test</Text>
-      </View>
-      <View style={styles.bottombox}>
-        <Text>bottom</Text>
-      </View>
+    <View style={styles.item}>
+      <Text style={styles.title}>{name}</Text>
     </View>
+  );
+};
+
+const App = () => {
+  const renderItem = ({item}) => {
+    return <Item name={item.name} />; // {}를 쓴 후 return 써야함 안그러면 화면에 안나옴
+  };
+  return (
+    // SafeAreaView 안에 FlatList가 있는데, 우리가 데이터 7개를 넣어줌으로서 데이터가 다 끝날 때까지 돌아간다.
+    <SafeAreaView style={styles.container}>
+      <FlatList
+        data={snack}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
+      />
+    </SafeAreaView>
   );
 };
 
