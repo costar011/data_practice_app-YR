@@ -29,27 +29,33 @@ const snack = [
   },
 ];
 
-const Item = ({name}) => {
+const Item = ({name, price}) => {
   return (
     <View style={styles.item}>
-      <Text style={styles.title}>{name}</Text>
+      <Text style={styles.databox}>
+        {name}
+        {price}
+      </Text>
     </View>
   );
 };
 
 const App = () => {
   const renderItem = ({item}) => {
-    return <Item name={item.name} />; // {}를 쓴 후 return 써야함 안그러면 화면에 안나옴
+    return <Item name={item.name} price={item.price} />; // {}를 쓴 후 return 써야함 안그러면 화면에 안나옴
   };
   return (
+    <View>
+      <View style={styles.bottombox}></View>
+      <SafeAreaView style={styles.container}>
+        <FlatList
+          data={snack}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id}
+        />
+      </SafeAreaView>
+    </View>
     // SafeAreaView 안에 FlatList가 있는데, 우리가 데이터 7개를 넣어줌으로서 데이터가 다 끝날 때까지 돌아간다.
-    <SafeAreaView style={styles.container}>
-      <FlatList
-        data={snack}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id}
-      />
-    </SafeAreaView>
   );
 };
 
@@ -58,23 +64,13 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: `#777`,
   },
-  topbox: {
-    height: 200,
+  topbox: {},
 
-    backgroundColor: `#555`,
-
-    alignItems: `center`,
-    justifyContent: `center`,
+  databox: {
+    height: 40,
+    marginTop: 20,
   },
-
-  bottombox: {
-    height: 300,
-
-    backgroundColor: `#444`,
-
-    alignItems: `center`,
-    justifyContent: `center`,
-  },
+  bottombox: {},
 });
 
 export default App;
