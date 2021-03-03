@@ -32,10 +32,10 @@ const snack = [
 const Item = ({name, price}) => {
   return (
     <View style={styles.item}>
-      <Text style={styles.databox}>
-        {name}
-        {price}
-      </Text>
+      <View style={styles.topbox}>
+        <Text style={styles.text}>{name}</Text>
+        <Text style={styles.text2}>{price}</Text>
+      </View>
     </View>
   );
 };
@@ -60,6 +60,23 @@ const App = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  topbox: {
+    width: 500,
+    height: 100,
+    marginTop: 35,
+
+    backgroundColor: `#9ba2c7`,
+  },
+  text: {
+    marginTop: 20,
+    marginLeft: 30,
+    fontSize: 25,
+  },
+  text2: {
+    marginTop: 10,
+    marginLeft: 30,
+    fontSize: 20,
   },
 });
 
