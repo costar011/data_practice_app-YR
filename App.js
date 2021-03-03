@@ -45,9 +45,8 @@ const App = () => {
     return <Item name={item.name} price={item.price} />; // {}를 쓴 후 return 써야함 안그러면 화면에 안나옴
   };
   return (
-    <View>
-      <View style={styles.bottombox}></View>
-      <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
+      <SafeAreaView>
         <FlatList
           data={snack}
           renderItem={renderItem}
@@ -55,22 +54,13 @@ const App = () => {
         />
       </SafeAreaView>
     </View>
-    // SafeAreaView 안에 FlatList가 있는데, 우리가 데이터 7개를 넣어줌으로서 데이터가 다 끝날 때까지 돌아간다.
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: `#777`,
   },
-  topbox: {},
-
-  databox: {
-    height: 40,
-    marginTop: 20,
-  },
-  bottombox: {},
 });
 
 export default App;
