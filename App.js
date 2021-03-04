@@ -1,5 +1,12 @@
 import React from 'react';
-import {SafeAreaView, View, Text, StyleSheet, FlatList} from 'react-native';
+import {
+  SafeAreaView,
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+  TouchableOpacity,
+} from 'react-native';
 
 const snack = [
   {
@@ -36,13 +43,19 @@ const Item = ({name, price}) => {
         <Text style={styles.text}>{name}</Text>
         <Text style={styles.text2}>{price}</Text>
       </View>
+
+      <View style={styles.btnbox}>
+        <TouchableOpacity style={styles.btn}>
+          <Text style={styles.btntext}>Select</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
 
 const App = () => {
   const renderItem = ({item}) => {
-    return <Item name={item.name} price={item.price} />; // {}를 쓴 후 return 써야함 안그러면 화면에 안나옴
+    return <Item name={item.name} price={item.price} />;
   };
   return (
     <View style={styles.container}>
@@ -62,21 +75,47 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   topbox: {
-    width: 500,
-    height: 100,
-    marginTop: 35,
+    width: `90%`,
+    height: 90,
+    marginTop: 15,
 
-    backgroundColor: `#9ba2c7`,
+    alignItems: `center`,
   },
+
   text: {
     marginTop: 20,
     marginLeft: 30,
     fontSize: 25,
   },
+
   text2: {
     marginTop: 10,
     marginLeft: 30,
     fontSize: 20,
+  },
+
+  btnbox: {
+    width: `90%`,
+    alignItems: `center`,
+    justifyContent: `center`,
+  },
+
+  btn: {
+    width: `30%`,
+    height: 30,
+
+    backgroundColor: `#616363`,
+
+    alignItems: `center`,
+    justifyContent: `center`,
+
+    marginLeft: 30,
+    marginTop: 10,
+    borderRadius: 5,
+  },
+
+  btntext: {
+    color: `#fff`,
   },
 });
 
